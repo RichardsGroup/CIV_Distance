@@ -19,7 +19,7 @@ def project(data, fit):
     return np.array(locs)
 
 
-def CIV_distance(data_original, fit_original):
+def CIV_distance(data_original, fit_original, step=1):
     #fit: N-by-2 array containing coordinates of points along best fit line 
     #data: N-by-2 [[x,y]] array of data 
     #NOTE: This really just caters to this situation (assumes monotonically decreasing fit_original)
@@ -38,12 +38,13 @@ def CIV_distance(data_original, fit_original):
     #3) Loop through each data point- start at tip of line and sum dist traveled until passing data point
     for scat in data:
         d = 0 #start at beginning of the line
-        for i in range(fit.shape[0]-1):
-            xp, x = fit[i,0], fit[i+1,0]
-            yp, y = fit[i,1], fit[i+1,1] 
+        for i in range(0, fit.shape[0]-step, step):
+            xp, x = fit[i,0], fit[i+step,0]
+            yp, y = fit[i,1], fit[i+step,1] 
+            dp = d
             d += np.sqrt((x-xp)**2 + (y-yp)**2)
             if yp >= scat[1] > y: #if we pass the projected y-coord, save the distance traveled
-                darr.append(d)
+                darr.append((d+dp)/2) #save the average between dprevious and d
                 break
                 
     return np.array(darr)
