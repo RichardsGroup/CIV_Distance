@@ -15,11 +15,13 @@ See ``example.ipynb`` for a walkthrough.
 After calling ``CIV_distance(data, fit)`` the basic method for computing CIV distances for a given dataset is:
 
 1) Convert the data from "raw" to "scaled" space.  Because the range of CIV blueshift (~ -1000-5000 km/s) is much greater than CIV EW (~ 5-110 Angstroms), scaling ensures that each parameter contributes equally to the CIV distance.
-2) Project the scaled Blueshift+EW data onto the scaled best-fit curve.
+![alt text](https://github.com/RichardsGroup/CIV_Distance/blob/main/imgs/scale_data.png)
+2) Project the scaled Blueshift+EW data onto the scaled best-fit curve.  (Note that points beyond either endpoint of the curve will get projected onto the respective endpoint.)
 ```
 data = project(data, fit) 
 ```
-3) To compute a distance for a given data point, start at the upper left the curve, and travel along each point of the best-fit curve--summing you're distance traveled as you go--until you pass the data point you're looking for.  Since the curve is monotonically decreasing, once your y-location along the curve falls below the data point's y-location, save the total distance traveled. 
+![alt text](https://github.com/RichardsGroup/CIV_Distance/blob/main/imgs/project_scaled.png)
+3) To compute a distance for a given data point, start at the upper left the curve, and travel along each point of the best-fit curve--summing you're distance traveled as you go--until you pass the data point you're looking for.  Since the curve is monotonically decreasing, once your y-location along the curve falls below the data point's y-location, save the total distance traveled.   
 ```
 #Start at tip of line and sum distance traveled until passing data point
 darr = [] #list to fill with distances along best-fit line for each point
@@ -33,6 +35,7 @@ for scat in data: #scat is [x,y] location of a given data point (projected onto 
             darr.append(d)
             break
 ```
+![alt text](https://github.com/RichardsGroup/CIV_Distance/blob/main/imgs/distance_path.png)
 
 ----
 
