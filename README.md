@@ -21,6 +21,7 @@ After calling ``CIV_distance(data, fit)`` the basic method for computing CIV dis
 data = project(data, fit) 
 ```
 ![alt text](https://github.com/RichardsGroup/CIV_Distance/blob/main/imgs/project_scaled.png)
+
 3) To compute a distance for a given data point, start at the upper left the curve, and travel from point-to-point<sup>1</sup> along the best-fit curve--summing your distance traveled as you go--until you pass the data point you're looking for.  Since the curve is monotonically decreasing, once your y-location on the curve falls below the projection of data point's y-location, save the total distance traveled.   
 ```
 #Start at tip of line and sum distance traveled until passing data point
