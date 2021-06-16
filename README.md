@@ -12,8 +12,10 @@ See ``example.ipynb`` for a walkthrough.
 
 After calling ``CIV_distance()`` the basic method for computing CIV distances for a given dataset is:
 
-1) Convert your data from "raw" to "scaled" space.  Because the range of CIV blueshift (~ -1000-5000 km/s) is much greater than CIV EW (~ 5-110 Angstroms), scaling ensures that each parameter contributes equally to the CIV distance.
+1) Convert the data from "raw" to "scaled" space.  Because the range of CIV blueshift (~ -1000-5000 km/s) is much greater than CIV EW (~ 5-110 Angstroms), scaling ensures that each parameter contributes equally to the CIV distance.
 2) Project the scaled Blueshift+EW data onto the scaled best-fit curve.
-3) For a given data point, 
+3) To compute a distance for a given data point, start at the upper left the curve, and travel along each point in the 
+adc
+4)
 
 For a visualization of how CIV "distance" changes throughout the EW-blueshift plane, hover over the points in this plot: http://physics.drexel.edu/~tmccafferey/CIV_distance_example.html
