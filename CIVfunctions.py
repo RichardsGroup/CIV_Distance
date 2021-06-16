@@ -43,7 +43,7 @@ def CIV_distance(data_original, fit_original, step=1):
             yp, y = fit[i,1], fit[i+step,1] 
             dp = d
             d += np.sqrt((x-xp)**2 + (y-yp)**2)
-            if yp >= scat[1] > y: #if we pass the projected y-coord, save the distance traveled
+            if yp >= scat[1] >= y: #if we pass the projected y-coord, save the distance traveled
                 darr.append((d+dp)/2) #save the average between dprevious and d
                 break
                 
