@@ -30,6 +30,7 @@ for scat in data: #scat is [x,y] location of a given data point (projected onto 
     for i in range(fit.shape[0]-1):
         xp, x = fit[i,0], fit[i+1,0]
         yp, y = fit[i,1], fit[i+1,1] 
+        dp = d
         d += np.sqrt((x-xp)**2 + (y-yp)**2)
         if yp >= scat[1] >= y: #if we pass the projected y-coord, save the distance traveled
             darr.append((d+dp)/2)
