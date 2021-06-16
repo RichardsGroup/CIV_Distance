@@ -4,7 +4,7 @@ Repo to compute CIV "distances" as advertised in Richards et al. papers.
 The code you'll need is in ``CIVfunctions.py``.  To compute CIV distances for your dataset:
 
 1) ``from CIVfunctions import project,CIV_distance``
-2) Load your CIV bluehsift and EW data into an N-by-2 numpy array, ``data``.
+2) Load your CIV blueshift and EW data into an N-by-2 numpy array, ``data``.
 3) Load in the line of best fit in ``data/RM_CIV_bestFitLine_noScale.npy`` as ``fit``.
 4) Save them as ``civ_distances = CIV_distance(data, fit)``
 
@@ -21,7 +21,7 @@ After calling ``CIV_distance(data, fit)`` the basic method for computing CIV dis
 data = project(data, fit) 
 ```
 ![alt text](https://github.com/RichardsGroup/CIV_Distance/blob/main/imgs/project_scaled.png)
-3) To compute a distance for a given data point, start at the upper left the curve, and travel along each point of the best-fit curve--summing you're distance traveled as you go--until you pass the data point you're looking for.  Since the curve is monotonically decreasing, once your y-location along the curve falls below the data point's y-location, save the total distance traveled.   
+3) To compute a distance for a given data point, start at the upper left the curve, and travel from point-to-point<sup>1</sup> along the best-fit curve--summing your distance traveled as you go--until you pass the data point you're looking for.  Since the curve is monotonically decreasing, once your y-location on the curve falls below the projection of data point's y-location, save the total distance traveled.   
 ```
 #Start at tip of line and sum distance traveled until passing data point
 darr = [] #list to fill with distances along best-fit line for each point
@@ -36,6 +36,8 @@ for scat in data: #scat is [x,y] location of a given data point (projected onto 
             break
 ```
 ![alt text](https://github.com/RichardsGroup/CIV_Distance/blob/main/imgs/distance_path.png)
+
+<sup>1</sup>You don't actually have to travel from point-to-point -- the ``step`` parameter sets the increment between points; see ``example.ipynb``. 
 
 ----
 
