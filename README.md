@@ -1,4 +1,4 @@
-# CIV_Distance
+# CIV Distance
 Repo to compute CIV "distances" as advertised in Richards et al. papers.
 
 The code you'll need is in ``CIVfunctions.py``.  To compute CIV distances for your dataset:
@@ -10,23 +10,30 @@ The code you'll need is in ``CIVfunctions.py``.  To compute CIV distances for yo
 
 See ``example.ipynb`` for a walkthrough.
 
-After calling ``CIV_distance()`` the basic method for computing CIV distances for a given dataset is:
+----
+
+After calling ``CIV_distance(data, fit)`` the basic method for computing CIV distances for a given dataset is:
 
 1) Convert the data from "raw" to "scaled" space.  Because the range of CIV blueshift (~ -1000-5000 km/s) is much greater than CIV EW (~ 5-110 Angstroms), scaling ensures that each parameter contributes equally to the CIV distance.
 2) Project the scaled Blueshift+EW data onto the scaled best-fit curve.
-3) To compute a distance for a given data point, start at the upper left the curve, and travel along each point in the 
 ```
-#Loop through each data point- start at tip of line and sum dist traveled until passing data point
+data = project(data, fit) 
+```
+3) To compute a distance for a given data point, start at the upper left the curve, and travel along each point of the best-fit curve--summing you're distance traveled as you go--until you pass the data point you're looking for.  Since the curve is monotonically decreasing, once your y-location along the curve falls below the data point's y-location, save the total distance traveled. 
+```
+#Start at tip of line and sum distance traveled until passing data point
 darr = [] #list to fill with distances along best-fit line for each point
-for scat in data:
+for scat in data: #scat is [x,y] location of a given data point (projected onto the curve)
     d = 0 #start at beginning of the line
     for i in range(fit.shape[0]-1):
         xp, x = fit[i,0], fit[i+1,0]
         yp, y = fit[i,1], fit[i+1,1] 
         d += np.sqrt((x-xp)**2 + (y-yp)**2)
-        if yp >= scat[1] > y: #if we pass the projected y-coord, save the distance traveled
+        if yp >= scat[1] >= y: #if we pass the projected y-coord, save the distance traveled
             darr.append(d)
             break
 ```
 
-For a visualization of how CIV "distance" changes throughout the EW-blueshift plane, hover over the points in this plot: http://physics.drexel.edu/~tmccafferey/CIV_distance_example.html
+----
+
+For another visualization of how CIV "distance" changes throughout the EW-blueshift plane, hover over the points in this plot: http://physics.drexel.edu/~tmccafferey/CIV_distance_example.html
