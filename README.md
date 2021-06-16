@@ -38,7 +38,7 @@ for scat in data: #scat is [x,y] location of a given data point (projected onto 
 ```
 ![alt text](https://github.com/RichardsGroup/CIV_Distance/blob/main/imgs/distance_path.png)
 
-<sup>1</sup>You don't actually have to travel from point-to-point -- the ``step`` parameter sets the increment between points; see ``example.ipynb``. 
+<sup>1</sup>You don't actually have to travel from point-to-point -- the ``step`` parameter sets the increment between points and can save a lot of time; see ``example.ipynb``. 
 
 ----
 
