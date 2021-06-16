@@ -32,7 +32,7 @@ for scat in data: #scat is [x,y] location of a given data point (projected onto 
         yp, y = fit[i,1], fit[i+1,1] 
         d += np.sqrt((x-xp)**2 + (y-yp)**2)
         if yp >= scat[1] >= y: #if we pass the projected y-coord, save the distance traveled
-            darr.append(d)
+            darr.append((d+dp)/2)
             break
 ```
 ![alt text](https://github.com/RichardsGroup/CIV_Distance/blob/main/imgs/distance_path.png)
