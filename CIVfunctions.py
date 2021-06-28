@@ -31,7 +31,8 @@ def CIV_distance(data_original, fit_original, step=1):
     data = np.array([xscale[len(fit_original):len(fit_original)+len(data_original)], yscale[len(fit_original):len(fit_original)+len(data_original)]]).T
     
     #2) data is now each point's orthogonal projection onto fit
-    data = project(data, fit) 
+    ind_projcut = -((fit.shape[0]-1)%step)
+    data = project(data, fit[:ind_projcut]) 
         
     darr = [] #list to fill with distances along best-fit line for each point
 
