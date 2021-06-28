@@ -25,15 +25,16 @@ def CIV_distance(data_original, fit_original, step=1):
     #NOTE: This really just caters to this situation (assumes monotonically decreasing fit_original)
     
     #1) Scale all the data equally
-    xscale = scale(np.concatenate((fit_original[:,0], data_original[:,0]))) #add ``good`` mask to lofar to remove "bad" reconstructions
+    xscale = scale(np.concatenate((fit_original[:,0], data_original[:,0]))) 
     yscale = scale(np.concatenate((fit_original[:,1], data_original[:,1])))
     fit = np.array([xscale[0:len(fit_original)], yscale[0:len(fit_original)]]).T
     data = np.array([xscale[len(fit_original):len(fit_original)+len(data_original)], yscale[len(fit_original):len(fit_original)+len(data_original)]]).T
     
     #2) data is now each point's orthogonal projection onto fit
     ind_projcut = -((fit.shape[0]-1)%step)
-    data = project(data, fit[:ind_projcut]) 
-        
+    if ind_projcut!=0: data = project(data, fit[:ind_projcut])
+    else: data = project(data, fit)
+    
     darr = [] #list to fill with distances along best-fit line for each point
 
     #3) Loop through each data point- start at tip of line and sum dist traveled until passing data point
