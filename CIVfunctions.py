@@ -35,7 +35,7 @@ def CIV_distance(data, fit, step=1, logEW=True):
         data = scaler.transform(data)
         fit = scaler.transform(fit)
     else:
-        scaler = joblib.load("data/scaler_linEW.save")
+        scaler = joblib.load("https://github.com/RichardsGroup/CIV_Distance/blob/main/data/scaler_linEW.save")
         data = scaler.transform(data)
         fit = scaler.transform(fit)
 
