@@ -4,7 +4,7 @@ Repo to compute CIV "distances" as advertised in Richards et al. papers.
 The code you'll need is in ``CIVfunctions.py``.  To compute CIV distances for your dataset:
 
 1) ``from CIVfunctions import project,CIV_distance``
-2) Load your CIV blueshift and log_{10}(EW)<sup>1</sup> data into an N-by-2 numpy array, ``data``.
+2) Load your CIV blueshift and $\log10$(EW)<sup>1</sup> data into an N-by-2 numpy array, ``data``.
 3) Load in the line of best fit in ``data/bestfit.npy`` as ``fit``.
 4) Save them as ``civ_distances = CIV_distance(data, fit)``
 
