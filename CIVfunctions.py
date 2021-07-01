@@ -17,24 +17,35 @@ def project(data, fit, perp_dist=False):
         r2 = (scat[0]-fit[:,0])**2 + (scat[1]-fit[:,1])**2      #dist^2 of scat from each point along fit
         delta = [fit[np.argmin(r2), 0], fit[np.argmin(r2), 1]]  #save point along fit where dist^2 was minimum
         locs.append(delta)
-        perp_distances.append(np.sqrt(r2.min()))  
+        
+        #Which side of the curve is this data point on?
+        if (scat[1] >= fit[np.argmin(r2), 1]):
+            side = 1.
+        else:
+            side = -1.
+        perp_distances.append(np.sqrt(r2.min()) * side)  
         
     if perp_dist:
         return np.array(locs), np.array(perp_distances)
     return np.array(locs)
 
 
-def CIV_distance(data, fit, step=1, logEW=True, path="./", perp_dist=False):
+def CIV_distance(data_original, fit_original, step=1, logEW=True, path="./", perp_dist=False):
     #fit: N-by-2 array containing coordinates of points along best fit line 
     #data: N-by-2 [[x,y]] array of data 
     #NOTE: This really just caters to this situation (assumes monotonically decreasing fit_original)
     
+    #Since we'll be manipulating the input arrays, work with copies
+    data = data_original.copy()
+    fit = fit_original.copy()
+
     #1) Scale all the data equally
     if logEW:
         scaler = joblib.load(path+"scalers/scaler_logEW.save")
         data = scaler.transform(data)
         fit = scaler.transform(fit)
     else:
+        fit[:,1] = 10.**fit[:,1] #The saved curve's EW is on a logarithmic scale
         scaler = joblib.load(path+"scalers/scaler_linEW.save")
         data = scaler.transform(data)
         fit = scaler.transform(fit)
