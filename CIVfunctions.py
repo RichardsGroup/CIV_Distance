@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.preprocessing import scale
+import joblib
 
 def project(data, fit):
     #Use: Project scattered data (data) onto a line of best fit (fit)
@@ -19,17 +19,26 @@ def project(data, fit):
     return np.array(locs)
 
 
-def CIV_distance(data_original, fit_original, step=1):
+def CIV_distance(data, fit, step=1, logEW=True):
     #fit: N-by-2 array containing coordinates of points along best fit line 
     #data: N-by-2 [[x,y]] array of data 
     #NOTE: This really just caters to this situation (assumes monotonically decreasing fit_original)
     
     #1) Scale all the data equally
-    xscale = scale(np.concatenate((fit_original[:,0], data_original[:,0]))) 
-    yscale = scale(np.concatenate((fit_original[:,1], data_original[:,1])))
-    fit = np.array([xscale[0:len(fit_original)], yscale[0:len(fit_original)]]).T
-    data = np.array([xscale[len(fit_original):len(fit_original)+len(data_original)], yscale[len(fit_original):len(fit_original)+len(data_original)]]).T
+    #xscale = scale(np.concatenate((fit_original[:,0], data_original[:,0]))) 
+    #yscale = scale(np.concatenate((fit_original[:,1], data_original[:,1])))
+    #fit = np.array([xscale[0:len(fit_original)], yscale[0:len(fit_original)]]).T
+    #data = np.array([xscale[len(fit_original):len(fit_original)+len(data_original)], yscale[len(fit_original):len(fit_original)+len(data_original)]]).T
     
+    if logEW:
+        scaler = joblib.load("data/scaler_logEW.save")
+        data = scaler.transform(data)
+        fit = scaler.transform(fit)
+    else:
+        scaler = joblib.load("data/scaler_linEW.save")
+        data = scaler.transform(data)
+        fit = scaler.transform(fit)
+
     #2) data is now each point's orthogonal projection onto fit
     ind_projcut = -((fit.shape[0]-1)%step)
     if ind_projcut!=0: data = project(data, fit[:ind_projcut])
