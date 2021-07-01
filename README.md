@@ -1,6 +1,13 @@
 # CIV Distance
 Repo to compute CIV "distances" as advertised in Richards et al. papers.
 
+Dependencies
+```
+pip install numpy
+pip install joblib
+pip install -U scikit-learn
+```
+
 The code you'll need is in ``CIVfunctions.py``.  To compute CIV distances for your dataset:
 
 1) ``from CIVfunctions import project,CIV_distance``
