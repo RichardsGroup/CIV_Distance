@@ -1,6 +1,10 @@
 # CIV Distance
 Repo to compute CIV "distances" as introduced in [Rivera et al. 2020](https://ui.adsabs.harvard.edu/abs/2020ApJ...899...96R/abstract) and further discussed in Rivera+2021 (in prep).
 
+Note that results presented here are based on CIV Equivalent Width (EW) and Blueshift definitions outlined in [Rankine et al. 2020](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.4553R/abstract) and that measurements are taken from noiseless ICA spectral reconstructions presented therein.  Usage of noisier EW and blueshift measurements (e.g., directly from an SDSS catalog) will likely yield slightly different results.
+
+measurements taken from noiseless ICA-based spectral reconstructions, presented in .  
+
 Dependencies
 ```
 pip install numpy
