@@ -1,5 +1,5 @@
 # CIV Distance
-Repo to compute CIV "distances" as advertised in Richards et al. papers.
+Repo to compute CIV "distances" as introduced in (Rivera et al. 2020)[https://ui.adsabs.harvard.edu/abs/2020ApJ...899...96R/abstract] and further discussed in Rivera+2021 (in prep).
 
 Dependencies
 ```
