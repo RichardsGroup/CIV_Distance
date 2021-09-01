@@ -19,7 +19,7 @@ The code you'll need is in ``CIVfunctions.py``.  To compute CIV distances for yo
 
 See ``example.ipynb`` for a walkthrough.
 
-<sup>1</sup>If you wish to work with linearly scaled EWs instead, simply set the parameter ``logEW=False``.  However, we advise against this as the CIV distance metric is much more meaningful at low EWs when using the default logarithmic scale.
+<sup>1</sup>If you wish to work with linearly scaled EWs instead, simply set the parameter ``logEW=False``.  This will compute CIV distance in a scaled EW-blueshift (rather than logEW-blueshift) space.  However, we advise against this as the CIV distance metric is much more meaningful at low EWs when using the default logarithmic scale.
 
 ----
 
