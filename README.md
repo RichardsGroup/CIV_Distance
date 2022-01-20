@@ -1,5 +1,5 @@
 # CIV Distance
-Repo to compute CIV "distances" as introduced in [Rivera et al. 2020](https://ui.adsabs.harvard.edu/abs/2020ApJ...899...96R/abstract) and further discussed in Rivera+2021 (in prep).
+Repo to compute CIV "distances" as introduced in [Rivera et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020ApJ...899...96R/abstract)/[Richards et al. (2021)](https://ui.adsabs.harvard.edu/abs/2021AJ....162..270R/abstract) and further discussed in Rivera+2021 (in prep).
 
 Note that results presented here are based on CIV Equivalent Width (EW) and Blueshift definitions given in [Rankine et al. 2020](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.4553R/abstract); measurements of EW and blueshift are derived from the noiseless ICA spectral reconstructions presented therein.  Usage of noisier EW and blueshift measurements (e.g., directly from an SDSS catalog) will likely yield slightly different results. 
 
