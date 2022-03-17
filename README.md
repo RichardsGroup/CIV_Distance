@@ -55,3 +55,6 @@ for scat in data: #scat is [x,y] location of a given data point (projected onto 
 ----
 
 For another visualization of how CIV "distance" changes throughout the EW-blueshift plane, hover over the points in this plot: http://physics.drexel.edu/~tmccafferey/CIV_distance_example.html
+
+---
+This work supported in part by NASA through a grant from the Space Telescope Science Institute (HST-AR-15048.001-A), which is operated by the Association of Universities for Research in Astronomy, Incorporated, under NASA contract NAS5-26555.
